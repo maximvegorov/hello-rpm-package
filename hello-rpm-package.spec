@@ -6,8 +6,6 @@ Summary:        Hello RPM Package
 License:        Proprietary
 URL:            https://github.com/maximvegorov/%{name}
 
-BuildRoot:      rpmbuild
-
 BuildArch:      noarch
 
 %{?systemd_requires}
@@ -23,10 +21,6 @@ Requires:       java-1.8.0-openjdk-headless
 Hello RPM Package
 
 %prep
-if [ -d rpmbuild ]; then
-    rm -rf rpmbuild > /dev/null 2>&1
-fi
-mkdir rpmdir
 
 %build
 maven clean package
