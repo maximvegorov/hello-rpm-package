@@ -2,6 +2,8 @@ Name:           hello-rpm-package
 Version:        0.0.1
 Release:        1%{?dist}
 Summary:        Hello RPM Package
+
+License:        Proprietary
 URL:            https://github.com/maximvegorov/%{name}
 
 BuildRoot:      rpmbuild
