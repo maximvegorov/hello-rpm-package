@@ -32,16 +32,16 @@ mkdir -p %{buildroot}%{_unitdir}
 mkdir -p %{buildroot}%{_localstatedir}/log/%{name}
 
 install -m 0755 %{name} %{buildroot}%{_bindir}/
-install -m 0744 log4j2.xml %{%_sysconfdir}/%{name}/
+install -m 0744 log4j2.xml %{_sysconfdir}/%{name}/
 install -m 0744 %{name}-LATEST.jar %{buildroot}%{_datadir}/java/%{name}/
 install -m 0744 %{name}.service %{buildroot}%{_unitdir}/
 
 %files
-%dir %attr(0755, -, -) %{%_sysconfdir}/%{name}/
+%dir %attr(0755, -, -) %{_sysconfdir}/%{name}/
 %dir %attr(0755, -, -) %{_datadir}/java/%{name}/
 %dir %attr(0775, %{name}, %{name}) %{_localstatedir}/log/%{name}
 %{_bindir}/%{name}
-%{%_sysconfdir}/%{name}/*
+%{_sysconfdir}/%{name}/*
 %{_datadir}/java/%{name}/*
 %{_unitdir}/%{name}.service
 
