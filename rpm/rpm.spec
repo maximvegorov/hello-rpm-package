@@ -26,20 +26,22 @@ Hello RPM Package
 
 %install
 mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_datadir}/java/%{name}
+mkdir -p %{buildroot}%{%_sysconfdir}/%{name}
 mkdir -p %{buildroot}%{_datadir}/java/%{name}
 mkdir -p %{buildroot}%{_unitdir}
 mkdir -p %{buildroot}%{_localstatedir}/log/%{name}
 
 install -m 0755 %{name} %{buildroot}%{_bindir}/
-install -m 0644 %{name}-LATEST.jar %{buildroot}%{_datadir}/java/%{name}/
-install -m 0644 %{name}.log4j2.xml %{buildroot}%{_datadir}/java/%{name}/
-install -m 0644 %{name}.service %{buildroot}%{_unitdir}/
+install -m 0744 log4j2.xml %{%_sysconfdir}/%{name}/
+install -m 0744 %{name}-LATEST.jar %{buildroot}%{_datadir}/java/%{name}/
+install -m 0744 %{name}.service %{buildroot}%{_unitdir}/
 
 %files
-%dir %{_datadir}/java/%{name}/
-%dir %attr(0770, %{name}, %{name}) %{_localstatedir}/log/%{name}
+%dir %attr(0755, -, -) %{%_sysconfdir}/%{name}/
+%dir %attr(0755, -, -) %{_datadir}/java/%{name}/
+%dir %attr(0775, %{name}, %{name}) %{_localstatedir}/log/%{name}
 %{_bindir}/%{name}
+%{%_sysconfdir}/%{name}/*
 %{_datadir}/java/%{name}/*
 %{_unitdir}/%{name}.service
 

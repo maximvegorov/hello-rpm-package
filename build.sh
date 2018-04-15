@@ -17,7 +17,7 @@ ARCHIVE_DIR=rpmbuild/SOURCES/$ARCHIVE_NAME
 mkdir -p $ARCHIVE_DIR
 
 mv target/$PACKAGE-LATEST.jar $ARCHIVE_DIR
-sed "s/%%%PACKAGE%%%/$PACKAGE/" rpm/log4j2.xml > $ARCHIVE_DIR/$PACKAGE.log4j2.xml
+sed "s/%%%PACKAGE%%%/$PACKAGE/" rpm/log4j2.xml > $ARCHIVE_DIR/log4j2.xml
 sed "s/%%%PACKAGE%%%/$PACKAGE/" rpm/start.sh > $ARCHIVE_DIR/$PACKAGE
 sed "s/%%%PACKAGE%%%/$PACKAGE/" rpm/systemd.service > $ARCHIVE_DIR/$PACKAGE.service
 
@@ -27,4 +27,3 @@ rm -rf $ARCHIVE_DIR
 sed "s/%%%PACKAGE%%%/$PACKAGE/" rpm/rpm.spec > rpmbuild/SPECS/$PACKAGE.spec
 
 rpmbuild --define "-topdir $(pwd)/rpmbuild" -bb rpmbuild/SPECS/$PACKAGE.spec
-

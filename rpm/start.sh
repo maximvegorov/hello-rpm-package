@@ -3,12 +3,12 @@
 set -e
 
 PACKAGE=$(basename $0)
-PACKAGE_HOME=/usr/share/java/$PACKAGE
-PACKAGE_LOG=/var/log/$PACKAGE
+JAR_LOCATION=/usr/share/java/$PACKAGE
+LOG_CONFIG_LOCATION=/etc/$PACKAGE
 
 /usr/bin/java -server \
     -showversion \
-    -jar ${PACKAGE_HOME}/${PACKAGE}-LATEST.jar \
+    -jar ${JAR_LOCATION}/${PACKAGE}-LATEST.jar \
     -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8081 \
     -XX:+UseParallelGC \
     -XX:+UseParallelOldGC \
@@ -30,4 +30,4 @@ PACKAGE_LOG=/var/log/$PACKAGE
     -Duser.language=en \
     -Duser.country=US \
     -Duser.timezone=GMT \
-    -Dlog4j.configurationFile=${PACKAGE_HOME}/${PACKAGE}.log4j2.xml
+    -Dlog4j.configurationFile=${LOG_CONFIG_LOCATION}/log4j2.xml
