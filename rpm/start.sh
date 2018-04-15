@@ -8,7 +8,6 @@ LOG_CONFIG_LOCATION=/etc/$PACKAGE
 
 /usr/bin/java -server \
     -showversion \
-    -jar ${JAR_LOCATION}/${PACKAGE}-LATEST.jar \
     -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8081 \
     -XX:+UseParallelGC \
     -XX:+UseParallelOldGC \
@@ -30,4 +29,5 @@ LOG_CONFIG_LOCATION=/etc/$PACKAGE
     -Duser.language=en \
     -Duser.country=US \
     -Duser.timezone=GMT \
-    -Dlogging.config=${LOG_CONFIG_LOCATION}/log4j2.xml
+    -Dlogging.config=${LOG_CONFIG_LOCATION}/log4j2.xml \
+    -jar ${JAR_LOCATION}/${PACKAGE}-LATEST.jar
