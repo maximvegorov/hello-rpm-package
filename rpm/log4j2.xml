@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
+    <Properties>
+        <Property name="LOGGER_HOME">/var/log/%%%PACKAGE%%%</Property>
+    </Properties>
+
     <Appenders>
         <RollingFile name="ToFile"
-                     fileName="/var/log/%%%PACKAGE%%%/app.log"
-                     filePattern="/var/log/%%%PACKAGE%%%/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+                     fileName="${LOGGER_HOME}/app.log"
+                     filePattern="${LOGGER_HOME}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout pattern="[%d] %-5p [%t] [%c{1.}] %m%n"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
