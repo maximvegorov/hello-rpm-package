@@ -28,7 +28,7 @@ Hello RPM Package
 
 %install
 mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{%_sysconfdir}/%{name}
+mkdir -p %{buildroot}%{_sysconfdir}/%{name}
 mkdir -p %{buildroot}%{_datadir}/java/%{name}
 mkdir -p %{buildroot}%{_unitdir}
 mkdir -p %{buildroot}%{_localstatedir}/log/%{name}
