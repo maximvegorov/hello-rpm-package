@@ -30,4 +30,4 @@ LOG_CONFIG_LOCATION=/etc/$PACKAGE
     -Duser.language=en \
     -Duser.country=US \
     -Duser.timezone=GMT \
-    -Dlog4j.configurationFile=${LOG_CONFIG_LOCATION}/log4j2.xml
+    -Dlogging.config=${LOG_CONFIG_LOCATION}/log4j2.xml
