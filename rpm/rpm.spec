@@ -5,6 +5,7 @@ Summary:        Hello RPM Package
 
 License:        Proprietary
 URL:            https://github.com/maximvegorov/%{name}
+Source:         %{name}-%{version}.tar.gz
 
 BuildArch:      noarch
 
@@ -19,6 +20,7 @@ Requires:       java-1.8.0-openjdk-headless
 Hello RPM Package
 
 %prep
+%setup -q
 
 %build
 
@@ -26,10 +28,11 @@ Hello RPM Package
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_datadir}/java/%{name}
 mkdir -p %{buildroot}%{_datadir}/java/%{name}
+mkdir -p %{buildroot}%{_unitdir}
 mkdir -p %{buildroot}%{_localstatedir}/log/%{name}
 
-install -m 0755 %{name} %{buildroot}%{_bindir}/%{name}
-install -m 0644 target/%{name}-LATEST.jar %{buildroot}%{_datadir}/java/%{name}/
+install -m 0755 %{name} %{buildroot}%{_bindir}/
+install -m 0644 %{name}-LATEST.jar %{buildroot}%{_datadir}/java/%{name}/
 install -m 0644 %{name}.log4j2.xml %{buildroot}%{_datadir}/java/%{name}/
 install -m 0644 %{name}.service %{buildroot}%{_unitdir}/
 
@@ -47,7 +50,7 @@ getent passwd %{name} > /dev/null || useradd -r -g %{name} %{name} -s /sbin/nolo
 %post
 if [ $1 -eq 1 ]; then
     # Initial installation
-    systemctl enabled %{name} &> /dev/null && systemctl start %{name} &> /dev/null
+    systemctl enable %{name} &> /dev/null && systemctl start %{name} &> /dev/null
 fi
 
 %preun
