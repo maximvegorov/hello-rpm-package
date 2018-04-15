@@ -1,0 +1,16 @@
+[Unit]
+Description=Hello RPM package
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=%%%PACKAGE%%%
+Group=%%%PACKAGE%%%
+ExecStart=/usr/bin/%%%PACKAGE%%%.sh
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=on-failure
+RestartSec=30
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target

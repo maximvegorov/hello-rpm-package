@@ -1,13 +1,14 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 set -e
 
-PACKAGE_NAME=hello-rpm-package
-PACKAGE_HOME=/usr/share/$PACKAGE_NAME
+PACKAGE=$(basename $0)
+PACKAGE_HOME=/usr/share/java/$PACKAGE
+PACKAGE_LOG=/var/log/$PACKAGE
 
-java -server \
+/usr/bin/java -server \
     -showversion \
-    -jar $PACKAGE_HOME/hello-rpm-package-LATEST.jar \
+    -jar ${PACKAGE_HOME}/${PACKAGE}-LATEST.jar \
     -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8081 \
     -XX:+UseParallelGC \
     -XX:+UseParallelOldGC \
@@ -29,5 +30,4 @@ java -server \
     -Duser.language=en \
     -Duser.country=US \
     -Duser.timezone=GMT \
-    -Dlog4j.configurationFile=$PACKAGE_HOME/hello-rpm-package.log4j2.xml
-    -Dlog.outputDir=$PACKAGE_NAME
+    -Dlog4j.configurationFile=${PACKAGE_HOME}/${PACKAGE}.log4j2.xml

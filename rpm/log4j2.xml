@@ -2,17 +2,15 @@
 <Configuration>
     <Appenders>
         <RollingFile name="ToFile"
-                     fileName="/var/log/${log.outputDir}/app.log"
-                     filePattern="/var/log/${log.outputDir}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+                     fileName="/var/log/%%%PACKAGE%%%/app.log"
+                     filePattern="/var/log/%%%PACKAGE%%%/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
             <PatternLayout pattern="[%d] %-5p [%t] [%c{1.}] %m%n"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="100 MB"/>
             </Policies>
         </RollingFile>
-        <Console name="ToConsole">
-        </Console>
         <Async name="ToFileAsync" bufferSize="4096">
-            <AppenderRef ref="ToConsole"/>
+            <AppenderRef ref="ToFile"/>
         </Async>
     </Appenders>
 
