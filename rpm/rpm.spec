@@ -1,3 +1,5 @@
+%global __os_install_post %{nil}
+
 Name:           %%%PACKAGE%%%
 Version:        0.0.1
 Release:        1%{?dist}
