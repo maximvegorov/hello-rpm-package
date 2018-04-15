@@ -34,7 +34,7 @@ mkdir -p %{buildroot}%{_unitdir}
 mkdir -p %{buildroot}%{_localstatedir}/log/%{name}
 
 install -m 0755 %{name} %{buildroot}%{_bindir}/
-install -m 0744 log4j2.xml %{_sysconfdir}/%{name}/
+install -m 0744 log4j2.xml %{buildroot}%{_sysconfdir}/%{name}/
 install -m 0744 %{name}-LATEST.jar %{buildroot}%{_datadir}/java/%{name}/
 install -m 0744 %{name}.service %{buildroot}%{_unitdir}/
 
